@@ -190,6 +190,15 @@ export async function monitorIMessageProvider(opts: MonitorIMessageOpts = {}): P
     const sender = senderRaw.trim();
     if (!sender) return;
     const senderNormalized = normalizeIMessageHandle(sender);
+
+    // Some iMessage DB/CLI combinations can misreport `is_from_me`.
+    // For 1:1 chats, `chat_identifier` is the peer handle; if the sender is
+    // not the peer, treat it as an outbound/self message and ignore.
+    if (!message.is_group && message.chat_identifier) {
+      const peer = normalizeIMessageHandle(message.chat_identifier);
+      if (peer && senderNormalized !== peer) return;
+    }
+
     if (message.is_from_me) return;
 
     const chatId = message.chat_id ?? undefined;

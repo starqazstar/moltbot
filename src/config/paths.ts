@@ -49,8 +49,14 @@ export function resolveStateDir(
 ): string {
   const override = env.MOLTBOT_STATE_DIR?.trim() || env.CLAWDBOT_STATE_DIR?.trim();
   if (override) return resolveUserPath(override);
-  const legacyDir = legacyStateDir(homedir);
-  const newDir = newStateDir(homedir);
+
+  // In tests we often override process.env.HOME, but os.homedir() may not reflect
+  // that change (platform-dependent). Prefer env.HOME when present so path
+  // resolution stays consistent.
+  const home = env.HOME?.trim() || homedir();
+
+  const legacyDir = path.join(home, LEGACY_STATE_DIRNAME);
+  const newDir = path.join(home, NEW_STATE_DIRNAME);
   const hasLegacy = fs.existsSync(legacyDir);
   const hasNew = fs.existsSync(newDir);
   if (!hasLegacy && hasNew) return newDir;
