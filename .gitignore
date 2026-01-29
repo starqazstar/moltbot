@@ -1,0 +1,48 @@
+# Moltbot 配置仓库 - 排除敏感信息
+
+# 认证和凭证（包含 token 和密钥）
+auth-profiles.json
+agents/*/agent/auth-profiles.json
+credentials/
+identity/
+
+# 备份文件
+*.bak
+*.bak.*
+*.backup
+
+# 会话和状态
+agents/*/sessions/
+subagents/
+cron/
+devices/
+
+# 日志文件
+logs/
+*.log
+
+# Socket 文件
+*.sock
+
+# 审批记录（可能包含敏感路径）
+exec-approvals.json
+
+# 临时文件
+*.tmp
+*.swp
+*~
+
+# 媒体缓存
+media/
+
+# 浏览器缓存
+browser/
+
+# 沙箱目录
+sandbox/
+
+# 更新检查缓存
+update-check.json
+
+# Node 状态
+node.json

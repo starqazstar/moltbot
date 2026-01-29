@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.1.27-beta.1",
+    "lastTouchedAt": "2026-01-29T05:09:20.341Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-01-28T17:40:11.269Z",
+    "lastRunVersion": "2026.1.27-beta.1",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "anthropic:manual": {
+        "provider": "anthropic",
+        "mode": "token"
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "anthropic/claude-sonnet-4-5"
+      },
+      "workspace": "/Users/public1/clawd",
+      "compaction": {
+        "mode": "safeguard",
+        "maxHistoryShare": 0.3
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    }
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto"
+  },
+  "channels": {
+    "imessage": {
+      "enabled": true,
+      "cliPath": "/opt/homebrew/bin/imsg",
+      "dbPath": "/Users/public1/Library/Messages/chat.db",
+      "dmPolicy": "allowlist",
+      "allowFrom": [
+        "+8615647188035"
+      ],
+      "groupPolicy": "allowlist",
+      "historyLimit": 20,
+      "dmHistoryLimit": 50,
+      "groups": {
+        "*": {
+          "requireMention": true
+        }
+      }
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "remote": {
+      "transport": "direct"
+    }
+  },
+  "skills": {
+    "load": {
+      "extraDirs": [
+        "/Users/public1/clawd/skills"
+      ]
+    },
+    "install": {
+      "nodeManager": "npm"
+    }
+  },
+  "plugins": {
+    "entries": {
+      "imessage": {
+        "enabled": true
+      }
+    }
+  }
+}
