@@ -71,4 +71,19 @@ USER.md
 
 # local tooling
 .serena/
+
+# Local documentation and scripts (不推送到仓库)
+*.md
+!README.md
+!CHANGELOG.md
+!CONTRIBUTING.md
+!LICENSE.md
+!docs/**/*.md
+!extensions/**/*.md
+*.sh
+!scripts/**/*.sh
+.specstory/
+*.plist
+!apps/**/*.plist
+AI_DOCS_INDEX.txt
 node_modules
